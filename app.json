@@ -1,0 +1,159 @@
+{
+  "id": "com.jilles.x10",
+  "version": "0.5.3",
+  "compatibility": ">=1.0.1",
+  "category": [ "appliances", "lights" ],
+  "name": {
+    "en": "X10",
+    "nl": "X10"
+  },
+  "description": {
+    "en": "App to receive and send X10 signals",
+    "nl": "App om X10 signalen te ontvangen en versturen"
+  },
+  "author": {
+    "name": "Jilles Miedema"
+  },
+  "images": {
+    "large": "./assets/images/large.jpg",
+    "small": "./assets/images/small.jpg"
+  },
+  "permissions": [
+    "homey:wireless:433"
+  ],
+
+
+
+  "drivers": [
+    {
+      "id": "MS13E",
+      "name": {
+        "en": "MS13E",
+        "nl": "MS13E"
+      },
+      "class": "sensor",
+      "capabilities": [ "alarm_motion", "alarm_night" ],
+      "images": {
+        "large": "drivers/MS13E/assets/images/large.jpg",
+        "small": "drivers/MS13E/assets/images/small.jpg"
+      },
+
+
+
+
+
+
+      "pair": [
+
+        {
+          "id": "showoptions",
+
+          "navigation": {
+            "next": "done"
+          }
+        },
+        {
+          "id": "done"
+
+        }
+      ]
+    },
+    
+    {
+      "id": "OnOff",
+      "name": {
+        "en": "OnOff"
+      },
+      "class": "socket",
+      "capabilities": [
+        "onoff"
+      ],
+      "images": {
+        "large": "drivers/OnOff/assets/images/large.jpg",
+        "small": "drivers/OnOff/assets/images/small.jpg"
+      },
+      "pair": [
+        {
+          "id": "showoptions",
+
+          "navigation": {
+            "next": "done"
+          }
+        },
+        {
+          "id": "done"
+        }
+      ]
+    },
+    
+      {
+      "id": "Dim",
+      "name": {
+        "en": "Dim",
+        "nl": "Dim"
+      },
+      "class": "socket",
+      "capabilities": [ "onoff", "dim" ],
+      "images": {
+        "large": "drivers/Dim/assets/images/large.jpg",
+        "small": "drivers/Dim/assets/images/small.jpg"
+      },
+
+
+
+
+
+
+      "pair": [
+        {
+          "id": "showoptions",
+
+          "navigation": {
+            "next": "done"
+          }
+        },
+        {
+          "id": "done"
+
+        }
+      ]
+    }
+    
+  ],
+
+
+
+
+  "signals": {
+    "433": {
+      "X10": {
+        "sof": [ 9000, 4500 ],
+        "eof": [ 563 ],
+        "words": [
+          [ 563, 563 ],
+          [ 563, 1689 ]
+
+        ],
+        "sensitivity": 1,
+        "interval": 40000,
+        "repetitions": 4,
+        "minimalLength": 10,
+        "maximalLength": 200
+      },
+      "X11": {
+        "sof": [ 0 ],
+        "eof": [ 0 ],
+        "words": [
+          [ 0 ],
+          [ 0 ]
+
+        ],
+        "sensitivity": 1,
+        "interval": 1,
+        "repetitions": 1,
+        "minimalLength": 1,
+        "maximalLength": 1
+      }
+    }
+  }
+}

@@ -1,0 +1,47 @@
+
+<button class="right" onclick="save()">Show Thermometers</button>
+
+<div id='text'></div>
+<button class="button" onclick="Homey.showView('list_devices')" data-i18n="pair.start.dipswitches"></button><button class="button" onclick="Homey.showView('imitate')" data-i18n="pair.start.has_remote"></button>
+
+<script type="text/javascript">
+//Homey.setTitle( __('pair.press_button.title') );
+
+    //Homey.emit('press_button');
+
+    
+   
+
+
+    Homey.on('button_pressed', function () {
+
+    
+        Homey.showView('showoptions');
+        Homey.emit("")
+    });
+
+    Homey.on('pairingdone', function () {
+        pairingdone();
+    });
+
+
+
+    function save() {
+      //  Homey.set('test', "this is pair page");
+      //  Homey.set('test2', "this is pair page2");
+        //alert("yes");
+        document.getElementById('text').innerHTML = 'on save ';
+        Homey.emit('press_button');
+        document.getElementById('text').innerHTML = '<h3>after emit press button</h3>';
+        //alert('after emit press button');
+    }
+
+    function pairingdone() {
+        Homey.done()
+
+
+    }
+    
+
+
+</script>

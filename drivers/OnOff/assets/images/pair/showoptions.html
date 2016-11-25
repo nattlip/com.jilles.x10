@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+
+
+
+<script type="text/javascript">
+//Homey.setTitle( __('pair.press_button.title') );
+
+    //Homey.emit('press_button');
+
+   // C:\Users\Jilles\Documents\Visual Studio 2015\Projects\Homey2X10\HomeyX10\nl.action-master\drivers\impuls\pair\configure.html
+    //http://www.electrictoolbox.com/javascript-add-options-html-select/
+    if (document && document.createElement) {
+
+       
+
+        var    x = document.getElementById("text").parentElement.nodeName;
+         
+          
+
+            var y = document.getElementsByClassName("view-content");
+
+            alert(y.length);
+
+            var z = y[0];
+
+            var alphabet = "abcdefghijklmnop".split("");
+            var alphabetCount = 16
+            console.log("hello");
+
+            var houseCodes = document.createElement("select");
+            houseCodes.className = "button";
+            //<option value="" disabled selected style="display:none;">Label</option>
+            var zeroOption = new Option("HouseCode", "0");
+            houseCodes.options[houseCodes.options.length] = zeroOption;
+            for (var i = 1; i <= alphabetCount ; i++) {
+                houseCodes.options[houseCodes.options.length] = new Option(alphabet[i-1 ].toUpperCase(), alphabet[i-1 ].toUpperCase());
+            }
+            houseCodes.selectedIndex = 0;
+            houseCodes.onchange = function () { saveHouseCode();} ;
+            z.appendChild(houseCodes);
+       
+
+            var numbers = new Array(16); //create a 16 element array
+
+            var unitCodes = document.createElement("select");
+            unitCodes.className = "button";
+            var zeroOption2 = new Option("UnitCode", "0");
+            unitCodes.options[unitCodes.options.length] = zeroOption2;
+            for (var i = 1; i <= numbers.length; i++) {
+                unitCodes.options[unitCodes.options.length] = new Option(i.toString(), i.toString());
+            }
+            unitCodes.selectedIndex = 0;
+            unitCodes.onchange = function () { saveUnitCode() };
+            z.appendChild(unitCodes);
+
+            function saveHouseCode() {
+               
+                Homey.emit('saveHouseCode', { "houseCode": houseCodes[houseCodes.selectedIndex].value });
+            }
+
+            function saveUnitCode() {
+                Homey.emit('saveUnitCode', { "unitCode": unitCodes[unitCodes.selectedIndex].value });
+
+            }
+
+
+
+
+
+
+    };
+
+
+    Homey.on('button_pressed', function () {
+
+       // alert('driver is ready with reading source')
+        Homey.showView('showoptions');
+        Homey.emit("")
+    });
+
+    Homey.on('pairingdone', function () {
+        pairingdone();
+    });
+
+   
+
+    function save() {
+      //  Homey.set('test', "this is pair page");
+      //  Homey.set('test2', "this is pair page2");
+        //alert("yes");
+        document.getElementById('text').innerHTML = 'on save ';
+        Homey.emit('done');
+        document.getElementById('text').innerHTML = '<h3>after emit press button</h3>';
+        //alert('after emit press button');
+    }
+
+    function pairingdone() {
+        Homey.done()
+
+
+    }
+
+
+
+</script>
+
+<div id='instruction'class="button">Choose the housecode and unitcode of X10 device </div>
+<div id='text'></div>
+<button class="button" onclick="save()">Save</button>
+
+<!--<button class="button" onclick="Homey.showView('list_devices')" data-i18n="pair.start.dipswitches"></button><button class="button" onclick="Homey.showView('imitate')" data-i18n="pair.start.has_remote"></button>-->
