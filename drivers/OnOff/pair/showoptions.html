@@ -84,15 +84,15 @@
 
    
 
-    function save() {
-      //  Homey.set('test', "this is pair page");
-      //  Homey.set('test2', "this is pair page2");
-        //alert("yes");
-        document.getElementById('text').innerHTML = 'on save ';
-        Homey.emit('done');
-        document.getElementById('text').innerHTML = '<h3>after emit press button</h3>';
-        //alert('after emit press button');
-    }
+    //function save() {
+    //  //  Homey.set('test', "this is pair page");
+    //  //  Homey.set('test2', "this is pair page2");
+    //    //alert("yes");
+    //    document.getElementById('text').innerHTML = 'on save ';
+    //    Homey.emit('done');
+    //    document.getElementById('text').innerHTML = '<h3>after emit press button</h3>';
+    //    //alert('after emit press button');
+    //}
 
     function pairingdone() {
         Homey.done()
@@ -106,6 +106,6 @@
 
 <div id='instruction'class="button">Choose the housecode and unitcode of X10 device </div>
 <div id='text'></div>
-<button class="button" onclick="save()">Save</button>
+<!--<button class="button" onclick="save()">Save</button>-->
 
 <!--<button class="button" onclick="Homey.showView('list_devices')" data-i18n="pair.start.dipswitches"></button><button class="button" onclick="Homey.showView('imitate')" data-i18n="pair.start.has_remote"></button>-->
