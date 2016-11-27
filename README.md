@@ -23,7 +23,7 @@ programming it was an excercise for Ecma6 and referencing
 
 25-11-2016 admitted to github. and asked admisson app store Athom
 
-
+27-11 -2016 removed not used save button from shwoptions pair page which caused app crashes.
 
 
 [![Paypal donate][pp-donate-image]][pp-donate-link]
