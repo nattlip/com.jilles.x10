@@ -21,9 +21,9 @@ programming it was an excercise for Ecma6 and referencing
 
 ## changeLog
 
-27-12-2016  made pair pages complete dynamic, so code only has to be written once for pairing
-            added functionality to Dim device , so it works 
-			added node homey log
+27-12-2016  - made pair pages complete dynamic, so code only has to be written once for pairing
+            - added functionality to Dim device , so it works 
+            - added node homey log
 
 25-11-2016 admitted to github. and asked admisson app store Athom
 
