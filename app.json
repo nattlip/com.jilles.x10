@@ -1,6 +1,6 @@
 {
   "id": "com.jilles.x10",
-  "version": "0.5.5",
+  "version": "0.5.683",
   "compatibility": ">=1.0.1",
   "category": [ "appliances", "lights" ],
   "name": {
@@ -38,27 +38,15 @@
         "small": "drivers/MS13E/assets/images/small.jpg"
       },
 
-
-
-
-
-
-      "pair": [
+      "pair":  [
 
         {
-          "id": "showoptions",
-
-          "navigation": {
-            "next": "done"
-          }
-        },
-        {
-          "id": "done"
+          "id": "showoptions"
 
         }
       ]
     },
-    
+
     {
       "id": "OnOff",
       "name": {
@@ -73,15 +61,10 @@
         "small": "drivers/OnOff/assets/images/small.jpg"
       },
       "pair": [
-        {
-          "id": "showoptions",
 
-          "navigation": {
-            "next": "done"
-          }
-        },
         {
-          "id": "done"
+          "id": "showoptions"
+
         }
       ]
     },
@@ -99,21 +82,10 @@
         "small": "drivers/Dim/assets/images/small.jpg"
       },
 
-
-
-
-
-
       "pair": [
-        {
-          "id": "showoptions",
 
-          "navigation": {
-            "next": "done"
-          }
-        },
         {
-          "id": "done"
+          "id": "showoptions"
 
         }
       ]
@@ -139,21 +111,8 @@
         "repetitions": 4,
         "minimalLength": 10,
         "maximalLength": 200
-      },
-      "X11": {
-        "sof": [ 0 ],
-        "eof": [ 0 ],
-        "words": [
-          [ 0 ],
-          [ 0 ]
-
-        ],
-        "sensitivity": 1,
-        "interval": 1,
-        "repetitions": 1,
-        "minimalLength": 1,
-        "maximalLength": 1
       }
+     
     }
   }
 }

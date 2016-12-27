@@ -55,7 +55,7 @@ const app = require('../app.js')
 
          this.renamed = driverConfig['renamed']
          this.deleted = driverConfig['deleted']
-         this.realtime = driverConfig['realtime']
+      //  this.realtime = driverConfig['realtime']
 
 
          //driverConfig['']

@@ -9,6 +9,8 @@ const convert = require('./lib/baseConverter').jan.ConvertBase;
 const helpFunctions = require('./lib/helpFunctions.js').jan;
 const libClass = require('./lib/libClass.js');
 const EventEmitter = require('events').EventEmitter;
+const Log = require('homey-log').Log;
+
 //const driverMS13E = require('./drivers/MS13E/driver.js');
 //const driverLib = require('./driverGenerator/driverLib.js');
 
@@ -113,7 +115,7 @@ class App  {
                         type: "Dim",
                     },
                     name: null,
-                    capabilities: ["onoff", "Dim"],
+                    capabilities: ["onoff", "dim"],
                     capability: {
                         onoff: false,
                         dim: 0
@@ -194,7 +196,7 @@ class App  {
 
                 if (app = 'X10')
                 {
-                    signal.emit('realtimeapp', 'this is raltime app')
+                    signal.emit('realtimeapp', 'this is realtime app')
                     if (capabilities.indexOf(capability) != -1)
                         this.lib.log(' capabilities.indexOf(capability) != -1 ', capabilities.indexOf(capability) != -1)
 
@@ -233,13 +235,7 @@ class App  {
 
                                // signal.emit('realtime',realtimeparams)
 
-                                driverH.realtime(this.homeyDevices[i].data, capability, value);
-
-
-
-
-
-                             //   module.exports.realtime(this.homeyDevices[i].data, capability, value);
+                                driverH.realtime(this.homeyDevices[i].data, capability, value);                        
 
 
 
@@ -258,17 +254,17 @@ class App  {
                                 console.log('updateCapabilitiesHomeyDevice alarm night   ', device.capability.alarm_motion)
 
                                 this.homeyDevices[i].capablity.alarm_night = value;
-                                // this.realtime(this.homeyDevices[i].data, 'alarm_night', dev.alarm_motion);
+                            
 
                                 let realtimeparams = {
                                     'device_data': this.homeyDevices[i].data,
                                     'capability' : capability,
                                     'value' : value
                                 }
-                                //signal.emit('realtime', realtimeparams)
+                        
                                 driverH.realtime(this.homeyDevices[i].data, capability, value);
 
-                               // module.exports.realtime(this.homeyDevices[i].data, capablity, value);
+                           
                                 break
                             }
                         }

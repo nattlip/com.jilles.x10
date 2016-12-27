@@ -60,7 +60,7 @@ class DriverConfig
         this.getDeviceById = driverLib.getDeviceById
         this.updateDeviceOnOff = driverLib.updateDeviceOnOff
         this.updateCapabilitiesHomeyDevice = driverLib.updateCapabilitiesHomeyDevice
-        this.realtime = driverLib.realtime
+      //  this.realtime = driverLib.realtime
 
         this.renamed = driverLib.renamed
         this.deleted = driverLib.deleted

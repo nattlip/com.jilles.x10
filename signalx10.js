@@ -25,23 +25,22 @@ require('./lib/lib.js')();
 class signals extends EventEmitter
 {      //extends EventEmitter
 
-    constructor()
-    {
-      super();
-     
-       
-      let lib = new libClass();        
-      this.debug = true;//  to set debug on or off  
-      lib.log = lib.log.bind(this); // makes that this class is this in function and not base class
+    constructor() {
+        super();
 
-      
-      lib.log('welcome to appSignal');
 
-      
+        let lib = new libClass();
+        this.debug = true;//  to set debug on or off  
+        lib.log = lib.log.bind(this); // makes that this class is this in function and not base class
 
-        let lastCommandReceived = { houseCode: '', unitCode: '', command: '' }  // needed for all on aof and bright and dim
-        let CommandReceived = { houseCode: '', unitCode: '', command: '' }
 
+        lib.log('welcome to appSignal');
+
+
+
+        this.lastCommandSend = { houseCode: '', unitCode: '', command: '' }  // needed for all on off and bright and dim
+        this.commandSend = { houseCode: '', unitCode: '', command: '' }
+        this.lastCommandReceived = { houseCode: '', unitCode: '', command: '' }
 
 
 
@@ -81,7 +80,7 @@ class signals extends EventEmitter
         //  let Signal = Homey.wireless('433').Signal;
 
 
-     //   lib.log(' Homey   ', util.inspect(Homey, false, null));
+        //   lib.log(' Homey   ', util.inspect(Homey, false, null));
 
 
         //  lib.log(' Signal   ', util.inspect(Signal.toString()));
@@ -94,8 +93,8 @@ class signals extends EventEmitter
 
         //  let signal = new Signal('X10');
 
-        let frequency = '433';
-        let signalId = 'X11'
+        //let frequency = '433';
+        //let signalId = 'X11'
 
 
 
@@ -104,25 +103,25 @@ class signals extends EventEmitter
 
 
 
-        Homey.manifest.signals[frequency][signalId]['sof'] = [9000, 4500];
-        Homey.manifest.signals[frequency][signalId]['eof'] = [563];
-        Homey.manifest.signals[frequency][signalId]['words'] = [[563, 563], [563, 1689]],
-            Homey.manifest.signals[frequency][signalId]['sensitivity'] = 1;
-        Homey.manifest.signals[frequency][signalId]['interval'] = 40000;
-        Homey.manifest.signals[frequency][signalId]['repetitions'] = 4;
-        Homey.manifest.signals[frequency][signalId]['minimalLength'] = 10;
-        Homey.manifest.signals[frequency][signalId]['maximalLength'] = 200;
+        //Homey.manifest.signals[frequency][signalId]['sof'] = [9000, 4500];
+        //Homey.manifest.signals[frequency][signalId]['eof'] = [563];
+        //Homey.manifest.signals[frequency][signalId]['words'] = [[563, 563], [563, 1689]],
+        //    Homey.manifest.signals[frequency][signalId]['sensitivity'] = 1;
+        //Homey.manifest.signals[frequency][signalId]['interval'] = 40000;
+        //Homey.manifest.signals[frequency][signalId]['repetitions'] = 4;
+        //Homey.manifest.signals[frequency][signalId]['minimalLength'] = 10;
+        //Homey.manifest.signals[frequency][signalId]['maximalLength'] = 200;
 
 
 
         let Signal = Homey.wireless('433').Signal;
 
- ///       lib.log(' Signal string  ', util.inspect(Signal.toString()));
+        ///       lib.log(' Signal string  ', util.inspect(Signal.toString()));
 
         this.signal = new Signal('X10');
 
 
- //       lib.log(' signal before register   ', util.inspect(signal));
+        //       lib.log(' signal before register   ', util.inspect(signal));
 
         //"X10": {
         //    "sof": [9000, 4500],
@@ -141,35 +140,31 @@ class signals extends EventEmitter
 
         // http://stackoverflow.com/questions/7306669/how-to-get-all-properties-values-of-a-javascript-object-without-knowing-the-key
 
-        let props = Object.getOwnPropertyNames(Homey.manifest.signals[frequency][signalId]);
-        let obj = Homey.manifest.signals[frequency][signalId];
-        lib.log('obj Homey.manifest.signals[frequency][signalId]    ', util.inspect(obj, false, null));
+        //let props = Object.getOwnPropertyNames(Homey.manifest.signals[frequency][signalId]);
+        //let obj = Homey.manifest.signals[frequency][signalId];
+        //lib.log('obj Homey.manifest.signals[frequency][signalId]    ', util.inspect(obj, false, null));
 
 
 
-  //      lib.log("props  ", props);
+        //      lib.log("props  ", props);
 
-        for (let prop in obj)
-        {
+        //for (let prop in obj) {
 
-   //         lib.log(prop, typeof (prop))
-            if (typeof (prop) === Object)
-            {
-     //           lib.log('prop', prop, '  value ', obj[prop]);
+        //    //         lib.log(prop, typeof (prop))
+        //    if (typeof (prop) === Object) {
+        //        //           lib.log('prop', prop, '  value ', obj[prop]);
 
-            }
-            else
-            {
-     //           lib.log(prop, "is no object");
-      //          lib.log('prop', prop, '  value ', obj[prop]);
-            }
-        };
+        //    }
+        //    else {
+        //        //           lib.log(prop, "is no object");
+        //        //          lib.log('prop', prop, '  value ', obj[prop]);
+        //    }
+        //};
 
-        for (let key in obj)
-        {
-            let value = obj[key];
-    //        lib.log('key ', key, '  value ', value);
-        }
+        //for (let key in obj) {
+        //    let value = obj[key];
+        //    //        lib.log('key ', key, '  value ', value);
+        //}
 
 
 
@@ -177,7 +172,7 @@ class signals extends EventEmitter
 
 
 
-     //   lib.log(' signal eof after    ', util.inspect(Homey.manifest.signals[frequency][signalId]['eof']));
+        //   lib.log(' signal eof after    ', util.inspect(Homey.manifest.signals[frequency][signalId]['eof']));
 
 
 
@@ -187,27 +182,24 @@ class signals extends EventEmitter
 
 
 
-        this.signal.register( (err, success) =>
-        {
-            if (err != null)
-            {
+        this.signal.register((err, success) => {
+            if (err != null) {
                 lib.log('signal register error: err yes', err, 'success', success);
-                lib.log(' signal after register   ', util.inspect(this.signal));
-            } else
-            {
+                lib.log(' signal after register 1  ', util.inspect(this.signal));
+            } else {
                 lib.log('signal register error: no error ', err, 'success', success);
-                Homey.manifest.signals[frequency][signalId]['sof'] = [9000, 4500];
-                Homey.manifest.signals[frequency][signalId]['eof'] = [563];
-                Homey.manifest.signals[frequency][signalId]['words'] = [[563, 563], [563, 1689]],
-                    Homey.manifest.signals[frequency][signalId]['sensitivity'] = 1;
-                Homey.manifest.signals[frequency][signalId]['interval'] = 40000;
-                Homey.manifest.signals[frequency][signalId]['repetitions'] = 4;
-                Homey.manifest.signals[frequency][signalId]['minimalLength'] = 10;
-                Homey.manifest.signals[frequency][signalId]['maximalLength'] = 200;
+                //Homey.manifest.signals[frequency][signalId]['sof'] = [9000, 4500];
+                //Homey.manifest.signals[frequency][signalId]['eof'] = [563];
+                //Homey.manifest.signals[frequency][signalId]['words'] = [[563, 563], [563, 1689]],
+                //    Homey.manifest.signals[frequency][signalId]['sensitivity'] = 1;
+                //Homey.manifest.signals[frequency][signalId]['interval'] = 40000;
+                //Homey.manifest.signals[frequency][signalId]['repetitions'] = 4;
+                //Homey.manifest.signals[frequency][signalId]['minimalLength'] = 10;
+                //Homey.manifest.signals[frequency][signalId]['maximalLength'] = 200;
 
 
 
-                lib.log(' signal after register   ', util.inspect(this.signal));
+                lib.log(' signal after register  2 ', util.inspect(this.signal));
 
 
 
@@ -216,17 +208,15 @@ class signals extends EventEmitter
 
         });
 
-    
+
 
         //#region receive data
 
         //fires when homey recieved reading
 
-        if (parse)
-        {
+        if (parse) {
 
-            this.signal.on('payload',  (payload, first) =>
-            {
+            this.signal.on('payload', (payload, first) => {
                 //if (!first) return;
                 counter += 1;
 
@@ -238,8 +228,7 @@ class signals extends EventEmitter
 
                 // mkes 0000 0100 
                 let str = '';
-                for (let i = 0; i < payLoadString.length; i += 8)
-                {
+                for (let i = 0; i < payLoadString.length; i += 8) {
                     str += payLoadString.slice(i, i + 8) + ' ';
                 }
                 lib.log(str);
@@ -259,8 +248,7 @@ class signals extends EventEmitter
         };
 
         //load is array
-        this.parseRXData2 =  (load)  =>
-        {
+        this.parseRXData2 = (load) => {
 
             let houseCode = "";
             let unitCode;
@@ -302,14 +290,12 @@ class signals extends EventEmitter
 
             lib.log('checkZerosAndOnes    ', valid);
 
-            if (valid)
-            {
+            if (valid) {
                 // check if secenod and forth are complemet of array
                 let complementbytescorrect = checkvalidcomplement(byte1, byte2, byte3, byte4);
                 lib.log('complementbytescorrect    ', complementbytescorrect);
 
-                if (complementbytescorrect)
-                {
+                if (complementbytescorrect) {
 
                     // http://stackoverflow.com/questions/29802787/how-do-i-reverse-an-array-in-javascript-while-preserving-the-original-value-of-t?noredirect=1&lq=1
                     let lfsbByte1 = byte1.slice().reverse();  // reverses also byte 1 without slice
@@ -345,43 +331,40 @@ class signals extends EventEmitter
                     // bit 7 is =1 then bright or all command
 
                     // first see if it isnt a dim or all command
-                    if (byte3[0] == 1)
-                    {
+                    if (byte3[0] == 1) {
 
                         if (byte3[4] == 1)  // dim or bright
                         {
 
-                            if (byte3[3] == 1)
-                            {
+                            if (byte3[3] == 1) {
                                 command = "dim"
+                                lib.log(' dim housecode lastreceived command ', this.lastCommandReceived.houseCode);
                                 lib.log("command  ", command);
                             }
-                            else if (byte3[3] == 0)
-                            {
+                            else if (byte3[3] == 0) {
                                 command = "bright"
+                                lib.log(' bright housecode lastreceived command ', this.lastCommandReceived.houseCode);
                                 lib.log("command  ", command);
                             }
                         }
+                        // with all the housecode this command is used
                         else if (byte3[4] == 0) // all
                         {
-                            if (byte3[3] == 1)
-                            {
-                                lib.log(' all on housecode  ', lastCommandReceived.houseCode);
+                            if (byte3[3] == 1) {
+                                lib.log(' all on housecode lastreceived command ', this.lastCommandReceived.houseCode);
                                 command = "allon"
                                 lib.log("command  ", command);
                             }
-                            else if (byte3[3] == 0)
-                            {
-                                lib.log(' all off housecode  ', lastCommandReceived.houseCode);
+                            else if (byte3[3] == 0) {
+                                lib.log(' all off housecode  lastreceived command', this.lastCommandReceived.houseCode);
                                 command = "alloff"
                                 lib.log("command  ", command);
                             }
                         }
                     }
                     //TODO: process bright all on commands
-                    //end normal command
-                    else if (byte3[0] == 0)
-                    {
+                    //end     startnormal command
+                    else if (byte3[0] == 0) {
                         // retrieveunitcode let unitCode =  (Byte 1 bit 2, Byte 3 bit 6, bit 3, bit 4) + 1
                         let unitCodeBitArray = [];
 
@@ -419,13 +402,11 @@ class signals extends EventEmitter
                         //retrieve command 
                         let commandBit = lfsbByte3[5];
 
-                        if (commandBit == 1)
-                        {
+                        if (commandBit == 1) {
                             command = "off"
                             lib.log("command  ", command);
                         }
-                        else if (commandBit == 0)
-                        {
+                        else if (commandBit == 0) {
                             command = "on"
                             lib.log("command  ", command);
                         }
@@ -445,25 +426,23 @@ class signals extends EventEmitter
 
 
 
-                    lib.log(' all on housecode  ', lastCommandReceived.houseCode);
+                    lib.log(' all on housecode  ', this.lastCommandReceived.houseCode);
 
                     this.processX10Data(houseCode, unitCodeString, address, command);
                 }; // complementcheck
             }// valid
         }; // end parsepayload
 
-        this.processX10Data = (houseCode, unitCodeString, address, command) =>
-        {
-             
+        this.processX10Data = (houseCode, unitCodeString, address, command) => {
+
             let homeyCommand = false;
 
-            if (unitCodeString !== '')
-            {
-                lastCommandReceived.houseCode = houseCode;
-                lastCommandReceived.unitCode = unitCodeString;
-                lastCommandReceived.command = command;
+            if (unitCodeString !== '') {
+                this.lastCommandReceived.houseCode = houseCode;
+                this.lastCommandReceived.unitCode = unitCodeString;
+                this.lastCommandReceived.command = command;
             }
-            lib.log('lastCommandReceived    ', lastCommandReceived);
+            lib.log(' this.lastCommandReceived    ', this.lastCommandReceived);
 
 
             //on motion = motrion true . on night = night true
@@ -476,10 +455,10 @@ class signals extends EventEmitter
 
             let result = {
 
-                        houseCode: houseCode,
-                        unitCode: unitCodeString,
-                        command  : homeyCommand                  
-                }
+                houseCode: houseCode,
+                unitCode: unitCodeString,
+                command: homeyCommand
+            }
 
 
             let homeyDevice = {
@@ -498,26 +477,25 @@ class signals extends EventEmitter
             }
 
 
-          
 
 
-            lib.log('typeof result ', typeof result )
+
+            lib.log('typeof result ', typeof result)
             //TODO:  check if device exists
-            if (typeof result !== "undefined")
-            {
-              // driverMS13E.updateCapabilitiesHomeyDevice('X10','MS13E',homeyDevice.capabilities, homeyDevice,"alarm_motion",command);
+            if (typeof result !== "undefined") {
+                // driverMS13E.updateCapabilitiesHomeyDevice('X10','MS13E',homeyDevice.capabilities, homeyDevice,"alarm_motion",command);
                 //appReference.processResult(result)
                 let frame = 'this is signal'
                 this.emit('signal', frame)
 
-                          
-
-
-                this.emit('receivedSignal',result)
 
 
 
-            }; 
+                this.emit('receivedSignal', result)
+
+
+
+            };
 
 
 
@@ -532,14 +510,20 @@ class signals extends EventEmitter
 
 
 
-        //codes the x10 command of a spicific device
-       this.codeX10SendCommand =  (houseCodeString, unitCodeString, commandString) =>
-        {
+        //codes the x10 command of a specific device
+        this.codeX10SendCommand = (houseCodeString, unitCodeString, commandString) => {
 
-            let addressByteArray = [];
-            let addressByteComplementArray = [];
-            let unitCodeByteArray = [];
-            let unitCodeByteComplementArray = [];
+            // to remember to  make it lastsendcommand after sending it at end of this void
+            this.commandSend.houseCode = houseCodeString
+            this.commandSend.unitCode = unitCodeString
+            this.commandSend.command = commandString
+
+
+
+            let addressByteArray = [];                // byte 1
+            let addressByteComplementArray = [];      // byte 2  
+            let unitCodeByteArray = [];               // byte 3 
+            let unitCodeByteComplementArray = [];     // byte 4
 
             let addressByteString = ''
 
@@ -547,9 +531,10 @@ class signals extends EventEmitter
 
             let houseCodeNibble = helpFunctions.getKeyByValue(houseCodes, houseCodeString);
 
-            if (commandString == 'allon' || commandString == 'alloff' || commandString == 'bright' || commandString == 'dim')
-            {
+            if (commandString == 'allon' || commandString == 'alloff' || commandString == 'bright' || commandString == 'dim') {
                 //byte 1
+
+                lib.log('commandstring unusual   ', commandString);
                 addressByteString = houseCodeNibble + '0000';
                 addressByteArray = helpFunctions.bitStringToBitArray(addressByteString)
 
@@ -565,8 +550,7 @@ class signals extends EventEmitter
 
 
 
-                switch (commandString)
-                {
+                switch (commandString) {
 
                     case "allon":
                         unitCodeByteArray = [1, 0, 0, 1, 0, 0, 0, 0]
@@ -575,10 +559,10 @@ class signals extends EventEmitter
                         unitCodeByteArray = [1, 0, 0, 0, 0, 0, 0, 0]
                         break;
                     case "bright":
-                        unitCodeByteArray = [1, 0, 0, 1, 1, 0, 0, 0]
+                        unitCodeByteArray = [1, 0, 0, 0, 1, 0, 0, 0]
                         break;
                     case "dim":
-                        unitCodeByteArray = [1, 0, 0, 0, 1, 0, 0, 0]
+                        unitCodeByteArray = [1, 0, 0, 1, 1, 0, 0, 0]
 
                 }
 
@@ -588,8 +572,10 @@ class signals extends EventEmitter
 
 
 
-            else if (commandString == 'on' || commandString == 'off')
-            {
+            else if (commandString == 'on' || commandString == 'off') {
+
+
+
 
 
                 let unitCodeNumber = Number(unitCodeString);
@@ -605,8 +591,7 @@ class signals extends EventEmitter
                 //     return str.length < max ? pad("0" + str, max) : str;
                 // };
 
-                function pad(str, max)
-                {
+                function pad(str, max) {
                     return str.length < max ? pad("0" + str, max) : str;
                 };
 
@@ -630,13 +615,11 @@ class signals extends EventEmitter
 
                 let commandBit = '';
 
-                if (commandString == "off")
-                {
+                if (commandString == "off") {
 
                     commandBit = '1'
                 }
-                else if (commandString == "on")
-                {
+                else if (commandString == "on") {
                     commandBit = "0"
                 }
 
@@ -668,46 +651,35 @@ class signals extends EventEmitter
             lib.log('1st byte ', addressByteArray);
             lib.log('2d byte ', addressByteComplementArray);
             lib.log('3th byte ', unitCodeByteArray);
-            lib.log('4th byte ', unitCodeByteComplementArray);
+            lib.log('4th byte ', unitCodeByteComplementArray);             
+        
 
-
-            return sendFrameArray;
+                return sendFrameArray;         
 
 
         };
 
-
-
-
-
-
-
-
-
-
-
-
+        
 
         // sends calculated bit array with signal
-       this.sendBitArray = (frametobesend) =>
-        {
+        this.sendBitArray = (frametobesend) => {
 
             //   node js buffer makes 01 from 1 and 00 from 0
             // homey sends same signal with Buffer as Array.
             let buffer = new Buffer(frametobesend);
 
-            this.signal.tx(buffer, function (err, result)
-            {
+            this.signal.tx(buffer, function (err, result) {
                 if (err != null) { lib.log('433Socket: Error:', err) }
-                else
-                {
+                else {
                     lib.log('433Socket: result:', result);
                     lib.log('433Socket: array.length:', buffer.length);
                     lib.log('433Socket: array:   ', buffer);
                     counter2 += 1;
                     lib.log('433Socket: sendcounter:   ', counter2);
+
                 };
             });
+
 
 
         };
@@ -730,25 +702,73 @@ class signals extends EventEmitter
 
 
 
-        //#endregion
+      
 
 
 
-       // this is emitted by driverlib to send
-       this.on('sendCommand', sendCommand => this.sendBitArray(this.codeX10SendCommand(sendCommand.houseCode, sendCommand.unitCode, sendCommand.X10Command)))
+        // this is emitted by driverlib to send
+        this.on('sendCommand', sendCommandFromdriverLib => {
 
-       //decodeSendCommand = sendCommand =>
-       //{
-       // this.sendBitArray(this.codeX10SendCommand(sendCommand.houseCode, sendCommand.unitCode, sendCommand.X10Command))
+            let houseCodeString = sendCommandFromdriverLib.houseCode
+            let unitCodeString = sendCommandFromdriverLib.unitCode
+            let commandString = sendCommandFromdriverLib.X10Command
 
-
-       //}
-
+            if (commandString == 'allon' || commandString == 'alloff' || commandString == 'bright' || commandString == 'dim') {
 
 
+                if (commandString == 'bright' || commandString == 'dim') {
+
+                    // i f lastcommand on off has the same address
+                    if (this.lastCommandSend.houseCode == houseCodeString && this.lastCommandSend.unitCode == unitCodeString) {
+
+                        lib.log('else if bright dim  correct last lcs', this.lastCommandSend)
+                        lib.log('else if bright dim   correct last cs  ', this.commandSend)
+
+                        this.sendBitArray(this.codeX10SendCommand(houseCodeString, unitCodeString, commandString))
+                    }
+                    // send an extra on or af command with this address
+                    else {
+                        this.lastCommandSend.houseCode = houseCodeString;
+                        this.lastCommandSend.unitCode = unitCodeString
+                        this.lastCommandSend.command = commandString
+                        lib.log('else if bright dim  not correct last lcs', this.lastCommandSend)
+                        lib.log('else if bright dim  not  correct last  cs', this.commandSend)
+
+                        this.sendBitArray(this.codeX10SendCommand(houseCodeString, unitCodeString, "on"))
+                        lib.log('sending on for dim', houseCodeString, unitCodeString, "on")    
+
+                           setTimeout( () => {
+                               this.sendBitArray(this.codeX10SendCommand(houseCodeString, unitCodeString, commandString))
+                         }, 500);
+                                       
+                        
+
+                    }
+
+                }
+            }
+                else if (commandString == 'on' || commandString == 'off') {
 
 
+                    // store last on of command               for all and dim 
+                    lib.log('else if on off before last = current  lcs ', this.lastCommandSend)
 
+                    this.lastCommandSend.houseCode = houseCodeString;
+                    this.lastCommandSend.unitCode = unitCodeString
+                    this.lastCommandSend.command = commandString
+
+                    lib.log('else if on off lcs ', this.lastCommandSend)
+                    lib.log('else if on off cs ', this.commandSend)
+
+                    this.sendBitArray(this.codeX10SendCommand(houseCodeString, unitCodeString, commandString))
+
+                }
+            
+
+        })  // on send
+
+
+          //#endregion
 
 
     } // end constructor
