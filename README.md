@@ -9,11 +9,11 @@ What works:
 
 * X10 OnOff device
 * X10 MS13E and lookalikes sensors (light alarm , movement alarm in one sensor)
-
+* Dim commands implemented 
 
 What doesn't:
 
-* Dim and All commands not yet implemented.
+* All commands not yet implemented.
 
 * The app shows all kind of referencing and extending possible in node.js 4.6.0 with Ecma6 , 
 programming it was an excercise for Ecma6 and referencing
