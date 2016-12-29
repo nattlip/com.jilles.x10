@@ -21,13 +21,13 @@ programming it was an excercise for Ecma6 and referencing
 
 ## changeLog
 
-27-12-2016  - made pair pages complete dynamic, so code only has to be written once for pairing
-            - added functionality to Dim device , so it works 
-            - added node homey log
-
 25-11-2016 admitted to github. and asked admisson app store Athom
 
 27-11 -2016 removed not used save button from showoptions pair page which caused app crashes.
+
+27-12-2016  - made pair pages complete dynamic, so code only has to be written once for pairing
+            - added functionality to Dim device , so it works 
+            - added node homey log
 
 
 [![Paypal donate][pp-donate-image]][pp-donate-link]
