@@ -13,7 +13,7 @@ What works:
 
 What doesn't:
 
-* Dim and All commands not yet implemented.
+*  All commands not yet implemented.
 
 * The app shows all kind of referencing and extending possible in node.js 4.6.0 with Ecma6 , 
 programming it was an excercise for Ecma6 and referencing
@@ -21,13 +21,15 @@ programming it was an excercise for Ecma6 and referencing
 
 ## changeLog
 
-27-12-2016  - made pair pages complete dynamic, so code only has to be written once for pairing
-            - added functionality to Dim device , so it works 
-            - added node homey log
 
 25-11-2016 admitted to github. and asked admisson app store Athom
 
 27-11 -2016 removed not used save button from showoptions pair page which caused app crashes.
+
+27-12-2016  made pair pages complete dynamic, so code only has to be written once for pairing
+            added functionality to Dim device , so it works 
+
+09-01-2017  starting a flow from a received X10 command implemented
 
 
 [![Paypal donate][pp-donate-image]][pp-donate-link]

@@ -131,6 +131,11 @@ class App  {
 
                 this.lib.log('signal result arrived in app ', util.inspect(result, false, null));
 
+
+                this.triggerflow(result);
+
+
+
                 this.homeyDevices.forEach(d =>
                 {
                     if (d.data.houseCode === result.houseCode && d.data.unitCode === result.unitCode)
@@ -272,10 +277,75 @@ class App  {
                 }
             }
 
-            
+
+            // this is fired when a flow with this trigger has been found, and has extra arguments
+            Homey.manager('flow').on('trigger.Received_X10_command', function (callback, args, state) {
+
+              
+                util.log('state', state)  // input from event input  
+             util.log('args', args)  // input from trigger card
+              
+
+                if (args.houseCode == state.houseCode && args.unitCode == state.unitCode &&
+                    args.command == state.command) {
+                 callback(null, true); // If true, this flow should run. The callback is (err, result)-style.
+                } else {
+                    callback(null, false);
+                }
+
+              
+
+                //Homey.manager('flow').trigger('Received_X10_command', tokens, state, function (err, result) {
+                //    if (err) return Homey.error(err);
+                //});
+
+            });
+
+            this.triggerflow = (result) => {
+
+
+                var tokens = {};
+
+                if (result.command == true)
+                { result.command = 'on' }  // 'on'  'off'
+                else if (result.command == false)
+                { result.command = 'off' } 
+
+                var state = {
+
+                    'houseCode': result.houseCode,
+                    'unitCode': result.unitCode,
+                    'command' : result.command
+
+                   
+
+                }
+
+                Homey.manager('flow').trigger('Received_X10_command', tokens, state, function (err, result) {
+
+               util.log('flow triggered with state ' ,state)
+                    if (err) return Homey.error(err);
+
+
+
+                })
+
+
+            }
+
+
+
+
+
+
+
+
+
+
+
         } // end init
 
-        
+     
 
 
 
