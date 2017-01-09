@@ -29,7 +29,7 @@ programming it was an excercise for Ecma6 and referencing
 27-12-2016  made pair pages complete dynamic, so code only has to be written once for pairing
             added functionality to Dim device , so it works 
 
-09-01-2017  starting a flow from a received X10 command implemented
+09-01-2017  starting a flow from a RF received X10 command implemented
 
 
 [![Paypal donate][pp-donate-image]][pp-donate-link]
