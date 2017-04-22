@@ -31,6 +31,8 @@ programming it was an excercise for Ecma6 and referencing
 
 09-01-2017  starting a flow from a RF received X10 command implemented
 
+22-04-2017  fixed a bug which didnt update devicecapabilities in MS13E device itself.
+
 
 [![Paypal donate][pp-donate-image]][pp-donate-link]
 [pp-donate-link]: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=42UGL52J4KPZE

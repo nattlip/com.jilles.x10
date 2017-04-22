@@ -11,6 +11,7 @@ const libClass = require('./lib/libClass.js');
 const EventEmitter = require('events').EventEmitter;
 const Log = require('homey-log').Log;
 
+require('./lib/lib.js')();
 //const driverMS13E = require('./drivers/MS13E/driver.js');
 //const driverLib = require('./driverGenerator/driverLib.js');
 
@@ -187,7 +188,7 @@ class App  {
                
                 let driverH = Homey.manager('drivers').getDriver('MS13E');
                 this.lib.log('driverH    ', util.inspect(driverH, false, null));
-              
+                this.lib.log('driverH    ', 'app 190');
 
 
 
@@ -239,9 +240,13 @@ class App  {
                                 }
 
                                // signal.emit('realtime',realtimeparams)
+                                this.lib.log('devicedata  ', this.homeyDevices[i].data )
+                                this.lib.log('capability  ', capability)
+                                this.lib.log('makeBoolean(value)  ', makeBoolean(value))
+                                this.lib.log('value  ', value)
 
-                                driverH.realtime(this.homeyDevices[i].data, capability, value);                        
-
+                                driverH.realtime(this.homeyDevices[i].data, capability, makeBoolean(value));                        
+                                this.lib.log('driverH    ', 'app 244');
 
 
                                 this.lib.log('updateCapabilitiesHomeyDevice this.homeyDevices[i].data   ', this.homeyDevices[i].data)
@@ -267,8 +272,8 @@ class App  {
                                     'value' : value
                                 }
                         
-                                driverH.realtime(this.homeyDevices[i].data, capability, value);
-
+                                driverH.realtime(this.homeyDevices[i].data, capability, makeBoolean(value));
+                                this.lib.log('driverH    ', 'app 271');
                            
                                 break
                             }
@@ -333,7 +338,7 @@ class App  {
 
             }
 
-
+            
 
 
 
