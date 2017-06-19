@@ -29,9 +29,9 @@ programming it was an excercise for Ecma6 and referencing
 27-12-2016  made pair pages complete dynamic, so code only has to be written once for pairing
             added functionality to Dim device , so it works 
 
-09-01-2017  starting a flow from a RF received X10 command implemented
+09-01-2017  starting a flow from a received X10 command implemented
 
-22-04-2017  fixed a bug which didnt update devicecapabilities in MS13E device itself.
+19-06-2017 changed interval and sensitivity to new standards of homey 433 signal defenition , was changed with no notice or explanation 
 
 
 [![Paypal donate][pp-donate-image]][pp-donate-link]

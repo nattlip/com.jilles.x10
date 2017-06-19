@@ -1,6 +1,6 @@
 {
   "id": "com.jilles.x10",
-  "version": "0.5.8166",
+  "version": "0.5.8167",
   "compatibility": ">=1.0.1",
   "category": [ "appliances", "lights" ],
   "name": {
@@ -106,8 +106,8 @@
           [ 563, 1689 ]
 
         ],
-        "sensitivity": 1,
-        "interval": 40000,
+        "sensitivity": 0.5,
+        "interval": 32767,
         "repetitions": 4,
         "minimalLength": 10,
         "maximalLength": 200
