@@ -1,6 +1,6 @@
 {
   "id": "com.jilles.x10",
-  "version": "0.5.8167",
+  "version": "0.5.8168",
   "compatibility": ">=1.0.1",
   "category": [ "appliances", "lights" ],
   "name": {
@@ -220,6 +220,10 @@
               {
                 "id": "6",
                 "label": { "en": "6" }
+              },
+               {
+                "id": "7",
+                "label": { "en": "7" }
               },
               {
                 "id": "8",
