@@ -22,7 +22,7 @@
     "homey:wireless:433"
   ],
 
-
+  "athomForumDiscussionId": 2283,
 
   "drivers": [
     {
@@ -256,27 +256,26 @@
               {
                 "id": "16",
                 "label": { "en": "16" }
-              }            
-            ]
               }
-            ,
-            {
-              "name": "command",
-              "type": "dropdown",
-              "values": [
-                {
-                  "id": "on",
-                  "label": { "en": "on" }
-                },
-                {
-                  "id": "off",
-                  "label": { "en": "off" }
-                }
-              ]
-            }
-
+            ]
+          },
+          {
+            "name": "command",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "on",
+                "label": { "en": "on" }
+              },
+              {
+                "id": "off",
+                "label": { "en": "off" }
+              }
             ]
           }
+
+        ]
+      }
     ]
   }
 

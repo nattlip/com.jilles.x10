@@ -124,7 +124,7 @@ class App  {
                 }
             }
 
-            signal.on('receivedSignal', result => this.processResult(result))
+            signal.on('receivedX10Signal', result => this.processResult(result))
             // process receoved signals param result  houseCode unitCode: unitCodeString,c       command  : homeyCommand         
             this.processResult = (result) =>
             {

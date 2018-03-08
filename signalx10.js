@@ -34,7 +34,7 @@ class signals extends EventEmitter
         lib.log = lib.log.bind(this); // makes that this class is this in function and not base class
 
 
-        lib.log('welcome to appSignal');
+        lib.log('welcome to Signalx10');
 
 
 
@@ -433,6 +433,7 @@ class signals extends EventEmitter
             }// valid
         }; // end parsepayload
 
+        // make ready for transport to homey 
         this.processX10Data = (houseCode, unitCodeString, address, command) => {
 
             let homeyCommand = false;
@@ -491,7 +492,7 @@ class signals extends EventEmitter
 
 
 
-                this.emit('receivedSignal', result)
+                this.emit('receivedX10Signal', result)
 
 
 

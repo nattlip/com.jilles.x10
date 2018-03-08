@@ -9,7 +9,7 @@ What works:
 
 * X10 OnOff device
 * X10 MS13E and lookalikes sensors (light alarm , movement alarm in one sensor)
-
+* X10 Dim works
 
 What doesn't:
 

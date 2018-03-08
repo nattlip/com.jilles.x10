@@ -1,0 +1,12 @@
+﻿Bijvoorbeeld var test = Homey.test = function () {
+     return this.require.cache['/opt/homey-client/system/manager/ManagerApps/bootstrap/homey-app/wireless/zwave.js'].exports.private.init.toString()
+   }
+   console.log(test())
+
+   flow x10.js
+
+   send
+
+   this.on
+   this.codeX10SendCommand
+   this.sendBitArray
