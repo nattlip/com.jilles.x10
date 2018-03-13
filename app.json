@@ -1,6 +1,6 @@
 {
   "id": "com.jilles.x10",
-  "version": "0.5.8169",
+  "version": "0.5.8170",
   "compatibility": ">=1.0.1",
   "category": [ "appliances", "lights" ],
   "name": {
@@ -21,6 +21,10 @@
   "permissions": [
     "homey:wireless:433"
   ],
+
+  "bugs": {
+    "url": "https: //github.com/nattlip/com.jilles.x10/issues"
+  },
 
   "athomForumDiscussionId": 2283,
 
@@ -221,7 +225,7 @@
                 "id": "6",
                 "label": { "en": "6" }
               },
-               {
+              {
                 "id": "7",
                 "label": { "en": "7" }
               },
